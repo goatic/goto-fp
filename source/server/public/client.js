@@ -1,0 +1,3 @@
+document.write(`
+  the "client.js" script file was served successfully...
+`)
