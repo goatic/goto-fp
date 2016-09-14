@@ -1,5 +1,5 @@
 # goto-fp
-Content related to my GOTO talk about Functional Programming
+content related to my goto talk about functional programming
 
 ## topics
 - intro
@@ -21,7 +21,7 @@ Content related to my GOTO talk about Functional Programming
 - ...
 
 ## references
-- Mostly Adequate Guide to Functional Programming, Brian Lonsdorf
+- mostly adequate guide to functional programming, brian lonsdorf
 - ...
 
 ## tools
