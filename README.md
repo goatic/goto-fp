@@ -1,4 +1,4 @@
-# goto-fp
+# [goto-fp](https://prezi.com/yi7x0ytfxorn/a-practical-introduction-to-functional-javascript/)
 content related to my goto talk about functional programming
 
 ## references
