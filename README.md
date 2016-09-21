@@ -5,7 +5,7 @@ content related to my goto talk about functional programming
 - [mostly adequate guide to functional programming](https://www.gitbook.com/book/drboolean/mostly-adequate-guide), brian lonsdorf
 - [execution in the kingdom of nouns](http://steve-yegge.blogspot.dk/2006/03/execution-in-kingdom-of-nouns.html), steve yegge
 - [functors, applicatives, and monads in pictures](http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html), aditya bhargava
-- [the fantasy-land specification](https://github.com/fantasyland/fantasy-land)
+- [the fantasy-land specification](https://github.com/fantasyland/fantasy-land), brian mckenna, roman pominov, brian lonsdorf etc.
 
 ## tools
 - react
