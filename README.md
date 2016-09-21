@@ -26,6 +26,7 @@ content related to my goto talk about functional programming
   - partial application
   - curried functions
 - composition
+  - the principle of compositionality
   - legos, numbers, arrays, functions
   - category theory
 - immutability
