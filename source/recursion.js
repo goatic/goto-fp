@@ -1,3 +1,4 @@
+// fold :: (a -> a -> b) -> b -> [a] -> b
 const fold = folder =>
   initial =>
     array =>
@@ -7,6 +8,9 @@ const fold = folder =>
           ? folder(initial)(array[0])
           : fold(folder)(folder(initial)(array[0]))(array.slice(1))
 
+const reduce = fold
+
+// map :: (a -> b) -> [a] -> [b]
 const map = mapper =>
   array =>
     array.length < 1
@@ -15,14 +19,16 @@ const map = mapper =>
         ? [mapper(array[0])]
         : [mapper(array[0]), ...map(mapper)(array.slice(1))]
 
-const compose = functions =>
+// compose :: (a -> b) -> (b -> c) -> (a -> c)
+const compose = (...functions) =>
   argument =>
     functions.length < 1
       ? argument
       : functions.length === 1
         ? functions[0](argument)
-        : functions[0](compose(functions.slice(1))(argument))
+        : functions[0](compose(...functions.slice(1))(argument))
 
+// every :: (a -> Boolean) -> [a] -> Boolean
 const every = tester =>
   array =>
     array.length < 1
@@ -31,6 +37,7 @@ const every = tester =>
         ? tester(array[0])
         : tester(array[0]) && every(tester)(array.slice(1))
 
+// any :: (a -> Boolean) -> [a] -> Boolean
 const any = tester =>
   array =>
     array.length < 1
@@ -39,6 +46,7 @@ const any = tester =>
         ? tester(array[0])
         : tester(array[0]) || any(tester)(array.slice(1))
 
+// find :: (a -> Boolean) -> [a] -> Maybe a
 const find = finder =>
   array =>
     array.length < 1
@@ -49,6 +57,7 @@ const find = finder =>
           ? undefined
           : find(finder)(array.slice(1))
 
+// indexOf :: a -> Number -> [a] -> Number
 const indexOf = a =>
   index =>
     array =>

@@ -7,10 +7,6 @@ const compose = fn =>
     arg =>
       fn(fun(arg))
 
-// identity :: a -> a
-const identity = a =>
-  a
-
 // isLowerCase :: String -> Boolean
 const isLowerCase = a =>
   a === a.toLowerCase()
@@ -29,10 +25,16 @@ const charAt = index =>
   string =>
     string.charAt(index)
 
+// isHeadUpperCase :: String -> Boolean
+const isHeadUpperCase = compose(isCapitalized, charAt(0))
+
+// isTailLowerCase :: String -> Boolean
+const isTailLowerCase = compose(isLowerCase, slice(1))
+
 // isNameSegment :: String -> Boolean
 const isNameSegment = name =>
-  compose(isCapitalized, charAt(0))(name) &&
-  compose(isLowerCase, slice(1))(name)
+  isHeadUpperCase(name) &&
+  isTailLowerCase(name)
 
 // isName :: String -> Boolean
 const isName = name =>

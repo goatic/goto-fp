@@ -31,7 +31,7 @@ const resolveRequest = (request, response) =>
     .resolve(request)
     .then(route)
     .catch(JSON.stringify.bind(JSON))
-    .then(respond(response.end.bind(response)))
+    .then(response.end.bind(response))
 
 createServer()
   .on('request', resolveRequest)

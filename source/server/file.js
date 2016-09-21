@@ -8,7 +8,7 @@ const promiseFile = encoding =>
           ? reject(error)
           : resolve(result)))
 
-const promiseFileBinary = promiseFile()
+const promiseFileBinary = promiseFile('binary')
 
 const serveFileBinary = request =>
   promiseFileBinary(request.url.slice(1))
