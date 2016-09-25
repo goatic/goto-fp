@@ -1,7 +1,8 @@
-Goto Night: A Practical Introduction to Functional JavaScript
+#Goto Night: A Practical Introduction to Functional JavaScript
 content related to my goto talk about functional programming
 
-## [presentation](https://prezi.com/yi7x0ytfxorn/a-practical-introduction-to-functional-javascript/)
+## [prezi](https://prezi.com/yi7x0ytfxorn/a-practical-introduction-to-functional-javascript/)
+slides presented as part of the talk
 
 ## references
 - [mostly adequate guide to functional programming](https://www.gitbook.com/book/drboolean/mostly-adequate-guide), brian lonsdorf
