@@ -1,6 +1,55 @@
 # [goto-fp](https://prezi.com/yi7x0ytfxorn/a-practical-introduction-to-functional-javascript/)
 content related to my goto talk about functional programming
 
+## topics
+- functions
+  - mathematics
+  - programming
+    - javascript
+      - syntax & semantics
+      - first class
+      - higher order
+      - point free
+- currying
+  - syntax & semantics
+  - modularity
+  - partial application
+- composition
+  - mathematics
+  - programming
+    - numbers, arrays, programs, anything
+    - functions
+- declarative coding
+  - imperative coding
+  - declarative > imperative
+  - the cognitive overhead
+- recursion
+  - iteration
+  - performance
+- write example application
+- immutability
+  - mutable state
+  - objects as values
+  - time-travel
+  - performance
+- purity
+  - input -> output
+  - effects
+  - mathematics
+  - benefits
+- containers
+  - strings, arrays, promises
+  - inversion of control
+  - chaining
+- algebra of programs
+  - interfaces
+    - monoids
+    - functors
+    - monads
+  - mathematics
+- refactor example application
+- conclusion
+
 ## references
 - [mostly adequate guide to functional programming](https://www.gitbook.com/book/drboolean/mostly-adequate-guide), brian lonsdorf
 - [execution in the kingdom of nouns](http://steve-yegge.blogspot.dk/2006/03/execution-in-kingdom-of-nouns.html), steve yegge
@@ -18,67 +67,3 @@ content related to my goto talk about functional programming
 - [graphql](http://graphql.org/)
 - [lodash](https://lodash.com/)
 - [node](https://nodejs.org/en/)
-
-## topic overview
-- functions
-- composition
-- currying
-- declarative coding
-- recursion
-- write example application
-- immutability
-- purity
-- containers
-- algebra of programs
-- category theory
-- refactor example application
-
-## topics brainstorm
-- intro
-  - background
-  - motivation
-  - overview
-- javascript
-  - why use it here
-  - mixed-paradigm
-  - ubiquitous
-- functions
-  - first class
-  - point-free
-- typing
-  - dynamic types
-  - flow & typescript
-  - algebraic types
-  - polymorphism
-  - chaining
-- declarative code
-  - what > how
-  - divide and conquer
-- currying
-  - partial application
-  - curried functions
-- composition
-  - the principle of compositionality
-  - legos, numbers, arrays, functions
-  - category theory
-- immutability
-  - state
-  - parallelism
-  - structural sharing
-- purity
-  - state
-  - effects
-  - input -> output
-  - memoization
-  - self-documenting
-  - portable
-  - testable
-  - referential transparency
-  - parallelism
-- hindley-milner notation
-- algebra
-  - monoids
-  - functors
-  - monads
-  - category theory
-- recursion
