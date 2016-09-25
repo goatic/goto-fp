@@ -1,1 +1,1 @@
-# Example Application
+# Example Application: Github Repository Search

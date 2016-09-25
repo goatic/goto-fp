@@ -1,0 +1,8 @@
+{
+  "name": "exampleApplication",
+  "description": "an example application for my goto talk",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "license": "MIT"
+}
