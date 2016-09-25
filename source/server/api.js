@@ -1,2 +1,2 @@
 module.exports = request =>
-  'requested the API'
+  {data: 'some data'}

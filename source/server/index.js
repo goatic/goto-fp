@@ -6,19 +6,13 @@ const { serveFileBinary } = require('./file')
 
 const PORT = 3000
 
-const respond = responder =>
-  response =>
-    responder(response)
-
 const createRouter = routeMap =>
   request =>
-    Object
-      .keys(routeMap)
-      .includes(request.url)
-        ? routeMap[request.url](request)
-        : request.url.startsWith('/public')
-            ? routeMap['public'](request)
-            : routeMap['default'](request)
+    routeMap[request.url]
+      ? routeMap[request.url](request)
+      : request.url.startsWith('/public')
+          ? routeMap['public'](request)
+          : routeMap['default'](request)
 
 const route = createRouter({
   default: serveClient,
@@ -26,16 +20,21 @@ const route = createRouter({
   '/api': serveApi
 })
 
-const resolveRequest = (request, response) =>
+const onRequest = (request, response) =>
   Promise
     .resolve(request)
     .then(route)
     .catch(JSON.stringify.bind(JSON))
     .then(response.end.bind(response))
 
+const onError = console.error.bind(console)
+
+const onListen = () =>
+  console.log(`
+    listening at http://localhost:${PORT}
+  `)
+
 createServer()
-  .on('request', resolveRequest)
-  .on('error', console.error.bind(console))
-  .listen(PORT, () =>
-    console.log(`
-      listening at http://localhost:${PORT}`))
+  .on('request', onRequest)
+  .on('error', onError)
+  .listen(PORT, onListen)

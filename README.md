@@ -19,7 +19,21 @@ content related to my goto talk about functional programming
 - [lodash](https://lodash.com/)
 - [node](https://nodejs.org/en/)
 
-## topics
+## topic overview
+- functions
+- composition
+- currying
+- declarative coding
+- recursion
+- write example application
+- immutability
+- purity
+- containers
+- algebra of programs
+- category theory
+- refactor example application
+
+## topics brainstorm
 - intro
   - background
   - motivation
