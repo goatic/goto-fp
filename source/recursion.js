@@ -8,6 +8,7 @@ const fold = folder =>
           ? folder(initial)(array[0])
           : fold(folder)(folder(initial)(array[0]))(array.slice(1))
 
+// alias
 const reduce = fold
 
 // map :: (a -> b) -> [a] -> [b]
