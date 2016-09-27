@@ -1,43 +1,52 @@
-const getElementById = document.getElementById.bind(document)
-const logMessage = console.log.bind(console)
-const logError = console.error.bind(console)
+/*
+  highly reusable
+*/
 
-const inspect = a => {
-  console.log(a)
-  return a
-}
+const pipe = (...functions) =>
+  functions.length === 0
+    ? compose
+    : functions.length === 1
+      ? functions[0]
+      : (...args) =>
+        functions[functions.length - 1](pipe(...functions.slice(0, functions.length - 1))(...args))
 
 const property = (...keys) =>
   keys.length === 0
-    ? property
+    ? object => object
     : object =>
       keys.length === 1
         ? object[keys[0]]
         : property(...keys.slice(1))(object[keys[0]])
 
-const pipe = (...functions) =>
-  functions.length === 0
-    ? pipe
-    : (...arguments) =>
-      functions.length === 1
-        ? functions[functions.length - 1](...arguments)
-        : functions[functions.length - 1](pipe(...functions.slice(0, functions.length - 1))(...arguments))
+const map = mapper =>
+  array =>
+    array.length < 1
+      ? []
+      : array.length === 1
+        ? [mapper(array[0])]
+        : [mapper(array[0]), ...map(mapper)(array.slice(1))]
 
-const debounce = fun => {
-  let pending
-  return (...args) => {
-    clearTimeout(pending)
-    return pending = setTimeout(() => fun(...args), 1500)
+const debounce = timeout =>
+  fun => {
+    let pending
+    return (...args) => {
+      clearTimeout(pending)
+      return pending = setTimeout(() => fun(...args), timeout)
+    }
   }
-}
 
-const pThen = fun =>
+const then = fun =>
   promise =>
     promise.then(fun)
 
-const pCatch = fun =>
-  promise =>
-    promise.catch(fun)
+/*
+  app specific
+*/
+
+const shortDebounce = debounce(2000)
+
+const createQueryUrl = query =>
+  `https://api.github.com/search/repositories?q=${query}`
 
 const sendRequest = url =>
   fetch(url)
@@ -45,64 +54,43 @@ const sendRequest = url =>
 const parseJson = response =>
   response.json()
 
-const createQueryUrl = query =>
-  `https://api.github.com/search/repositories?q=${query}`
-
-const setContent = element =>
-  content =>
-    element.innerHTML = content
-
-const map = fun =>
-  functor =>
-    functor.map(fun)
-
-const toDateString = a =>
-  new Date(a).toDateString()
-
-const renderOwner = ({
-    login,
-    avatar_url,
-    html_url
-  }) =>
+const renderOwner = owner =>
     ` <div>
         <p>created by
-          <a href="${html_url}">${login}</a>
+          <a href="${owner.html_url}">${owner.login}</a>
         </p>
         <img
           style="height:150px;width:150px;"
-          src="${avatar_url}"
+          src="${owner.avatar_url}"
         ></img>
       </div>
     `
 
-const renderRepository = ({
-    name,
-    description,
-    created_at,
-    html_url,
-    language,
-    stargazers_count,
-    owner
-  }) =>
+const renderRepository = repo =>
     ` <div style="display:inline-block; background:whitesmoke">
-        <h3><a href="${html_url}">${name}</a></h3>
-        <h4>${description}</h4>
-        <h5>written in ${language}</h5>
-        <p>created ${toDateString(created_at)}</p>
-        <p>${stargazers_count} stars</p>
-        ${renderOwner(owner)}
+        <h3><a href="${repo.html_url}">${repo.name}</a></h3>
+        <h4>${repo.description}</h4>
+        <h5>written in ${repo.language}</h5>
+        <p>created ${repo.created_at}</p>
+        <p>${repo.stargazers_count} stars</p>
+        ${renderOwner(repo.owner)}
       </div>
     `
 
-getElementById('search').oninput = debounce(pipe(
-  property('target', 'value'),
-  createQueryUrl,
-  sendRequest,
-  pThen(parseJson),
-  pThen(pipe(
-    property('items'),
-    map(renderRepository),
-    setContent(getElementById('repositories'))
-  )),
-  pCatch(logError)
-))
+const render = id =>
+  html =>
+    document
+      .getElementById(id)
+      .innerHTML = html
+
+document
+  .getElementById('search')
+  .oninput = shortDebounce(pipe(
+    property('target', 'value'),
+    createQueryUrl,
+    sendRequest,
+    then(parseJson),
+    then(pipe(
+      property('items'),
+      map(renderRepository),
+      render('repositories')))))
