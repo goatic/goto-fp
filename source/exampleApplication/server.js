@@ -8,6 +8,8 @@ const onRequest = (request, response) =>
   readFile(request.url.slice(1), FILE_ENCODING, (error, content) =>
     response.end(content || JSON.stringify(error)))
 
+const onError = console.error.bind(console)
+
 const onListen = () =>
   console.log(`
     listening at http://localhost:${PORT}
@@ -15,5 +17,5 @@ const onListen = () =>
 
 createServer()
   .on('request', onRequest)
-  .on('error', console.error.bind(console))
+  .on('error', onError)
   .listen(PORT, onListen)

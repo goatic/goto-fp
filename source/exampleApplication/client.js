@@ -27,7 +27,7 @@ const debounce = fun => {
   let pending
   return (...args) => {
     clearTimeout(pending)
-    pending = setTimeout(() => fun(...args), 1500)
+    return pending = setTimeout(() => fun(...args), 1500)
   }
 }
 
@@ -99,8 +99,10 @@ getElementById('search').oninput = debounce(pipe(
   createQueryUrl,
   sendRequest,
   pThen(parseJson),
-  pThen(property('items')),
-  pThen(map(renderRepository)),
-  pThen(setContent(getElementById('repositories'))),
+  pThen(pipe(
+    property('items'),
+    map(renderRepository),
+    setContent(getElementById('repositories'))
+  )),
   pCatch(logError)
 ))
