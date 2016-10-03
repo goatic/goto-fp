@@ -1,5 +1,8 @@
 #Goto Night: A Practical Introduction to Functional JavaScript
-content related to my goto talk about functional programming
+### 
+content related to my goto talk on 27th of September, 2016
+
+
 
 ## [prezi](https://prezi.com/yi7x0ytfxorn/a-practical-introduction-to-functional-javascript/)
 slides presented as part of the talk
